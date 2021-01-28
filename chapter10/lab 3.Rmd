@@ -1,0 +1,77 @@
+---
+title: "Untitled"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(gsheet)
+library(dplyr)
+library(tidyr)
+library(readr)
+```
+
+```{r}
+dataCanadaFullLong <- readr::read_csv("./data/dataCanadaFullLong.csv")
+dataCanadaFullLong$isicCode <- as.character(dataCanadaFullLong$isicCode)
+```
+
+
+```{r}
+# Produce a bar chart
+library(ggplot2)
+library(ggthemes)
+ggplot(data = dataCanadaFullLong, aes(x = year, y = value, fill = isicCode)) + 
+  geom_bar(stat = "identity", width = 0.5, position = "dodge") + 
+  xlab("") +
+  ylab("Number of employees")  +
+  labs(fill = "Isic Code")  +  
+  theme_minimal() + 
+  scale_fill_brewer(direction = -1)
+```
+
+
+```{r}
+# Line chart elements
+ggplot(data = dataCanadaFullLong, aes(x = year, y = value, color = isicCode)) +
+  geom_line(size = 1.5) +
+  xlab("") +
+  ylab("Number of employees")  +
+  labs(fill = "Isic Code")  +  
+  theme_minimal() +
+  scale_color_brewer(direction = -1)
+```
+```{r}
+ggplot(data = dataCanadaFullLong, aes(x = year, y = value, color = isicCode)) +
+  geom_line(size = 1.5) +
+  xlab("") +
+  ylab("Number of employees")  +
+  labs(fill = "Isic Code")  +  
+  theme_minimal() +
+  scale_color_brewer(direction = -1) + 
+  geom_point(size = 2.5)
+```
+
+```{r}
+# Bubble chart elements
+ggplot(data = dataCanadaFullLong, aes(x = year, y = value, color = isicCode)) +
+  geom_point(aes(size = value)) +
+  xlab("") +
+  ylab("Number of employees")  +
+  theme_minimal() +
+  scale_color_brewer(direction = -1) +
+  scale_size_continuous(range = c(3,11)) + 
+  guides(size = FALSE)
+```
+
+```{r}
+
+```
+
+
+
+
+
