@@ -68,8 +68,39 @@ ggplot(data = dataCanadaFullLong, aes(x = year, y = value, color = isicCode)) +
 ```
 
 ```{r}
+library(ggplot2)
+library(maps)
+world <- map_data("world")
+```
+
+```{r}
+ggplot(data = world, aes(x = long, y = lat, group = group)) + 
+  geom_polygon(fill = "white", color = "black") +
+  theme_void()
+```
+
+```{r}
+# Load packages
+library(ggplot2)
+# Retrieve data
+world <- map_data("world")
+americas <- subset(world, region %in% c("USA","Brazil","Mexico", "Colombia", "Argentina", "Canada",
+                                      "Peru","Venezuela","Chile","Guatemala","Ecuador", "Bolivia", "Cuba",
+                                      "Honduras", "Paraguay", "Nicaragua","El Salvador", "Costa Rica", "Panama",
+                                      "Uruguay",  "Jamaica",  "Trinidad and Tobago", "Guyana", "Suriname", "Belize",
+                                      "Barbados", "Saint Lucia", "Grenada", "Saint Vincent and the Grenadines", 
+                                      "Antigua and Barbuda", "Saint Kitts and Nevis"))
+# Create map
+ggplot(data = americas, aes(x = long, y = lat, group = group)) + 
+  geom_polygon(fill = "white", color = "black") +
+  coord_fixed(ratio=1.1, xlim = c(-180, -35))  + 
+  theme_void()
+```
+
+```{r}
 
 ```
+
 
 
 
