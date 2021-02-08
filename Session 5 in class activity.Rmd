@@ -1,0 +1,29 @@
+---
+title: "Session 5"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(readr)
+data <- read_csv("https://warin.ca/datalake/courses_data/qmibr/moneyball/mlb11.csv")
+```
+
+```{r}
+```
+
+
+```{r}
+plot(data$at_bats, data$runs)
+```
+```{r}
+library(statsr)
+```
+
+```{r}
+
+```
+
